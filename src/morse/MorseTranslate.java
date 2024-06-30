@@ -1,6 +1,9 @@
 package morse;
 
 import java.util.*;
+import java.io.*;
+import javax.sound.sampled.LineUnavailableException;
+
 
 public class MorseTranslate {
     private static final Map<Character, String> morseMap = new HashMap<>();
@@ -51,6 +54,11 @@ public class MorseTranslate {
             text = text.toLowerCase();
             for (char c : text.toCharArray()) {
                 morseCode.append(encode(c));
+            }
+            try {
+                MorseCodePlayer.soundMorse(morseCode.toString());
+            } catch (LineUnavailableException | IOException e) {
+                e.printStackTrace();
             }
         }
         else
