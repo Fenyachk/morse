@@ -53,3 +53,4 @@ bin/
 ### Mac OS ###
 .DS_Store
 >>>>>>> b1a47b7 (Morse translator)
+morse.jar

@@ -4,7 +4,7 @@ import java.util.*;
 
 public class MorseTranslate {
     private static final Map<Character, String> morseMap = new HashMap<>();
-    private ArrayList<String> morseCode;
+    private static final Map<String, Character> reverseMorseMap = new HashMap<>();
 
     static {
         morseMap.put('a', ".-");
@@ -33,12 +33,34 @@ public class MorseTranslate {
         morseMap.put('x', "-..-");
         morseMap.put('y', "-.--");
         morseMap.put('z', "--..");
+
+        for (Map.Entry<Character, String> entry : morseMap.entrySet()) {
+            reverseMorseMap.put(entry.getValue(), entry.getKey());
+        }
+    }
+    private static String encode(Character morse) {
+        return morseMap.getOrDefault(morse, "");
+    }
+    private static String decode(String morse) {
+        return reverseMorseMap.getOrDefault(morse, '?').toString();
     }
     public static String getMorseCode(String text) {
         StringBuilder morseCode = new StringBuilder();
-        text = text.toLowerCase();
-        for (char c : text.toCharArray()) {
-            morseCode.append( morseMap.getOrDefault(c, ""));
+        if (text.matches(".*[a-zA-Z].*"))
+        {
+            text = text.toLowerCase();
+            for (char c : text.toCharArray()) {
+                morseCode.append(encode(c));
+                morseCode.append(' ');
+            }
+        }
+        else
+        {
+            String[] words = text.trim().split("\\s");
+            for (String word : words) {
+                morseCode.append(decode(word));
+                morseCode.append(' ');
+            }
         }
         return morseCode.toString();
     }
