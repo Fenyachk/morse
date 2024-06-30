@@ -9,6 +9,6 @@ public class Main {
         System.out.println("Введите текст для перевода:");
         String text = scanner.nextLine();
         String morseCode = MorseTranslate.getMorseCode(text);
-        System.out.println("Текст '" + text + "' в коде Морзе: " + morseCode);
+        System.out.println("Translate '" + text + "': " + morseCode);
     }
 }

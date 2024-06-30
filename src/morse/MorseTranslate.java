@@ -51,7 +51,6 @@ public class MorseTranslate {
             text = text.toLowerCase();
             for (char c : text.toCharArray()) {
                 morseCode.append(encode(c));
-                morseCode.append(' ');
             }
         }
         else
